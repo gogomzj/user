@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <title>gogomzj</title>
+</head>
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: white">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <span style="color:#3c763d">gogomzj</span>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-ver">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="my-navbar-ver">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('main.index') }}">主页</a></li>
+                    <li><a href="https://www.github.com/gogomzj">社区</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--current_user是flask_login提供的-->
+                    {% if current_user.is_authenticated %}
+                        <li><a href="#">管理中心</a></li>
+                        <li><a href="#">{{current_user.name}}</a></li>
+                        <li><a href="{{url_for('auth.logout')}}">注销</a></li>
+                    {% else %}
+                        <li><a href="{{url_for('auth.login')}}">登陆</a></li>
+                        <li><a href="{{url_for('auth.register')}}">注册</a></li>
+                    {% endif %}
+                </ul>
+        </div>
+    </div>
+</nav>
+
+<!--主体-->
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

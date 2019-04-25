@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+<h2><small>尊敬的</small>{{current_user.name}}</h2>
+<p>您的验证链接已经过期，请点击
+    <a href="{{url_for('auth.resend_email')}}">这里</a>
+    重新发送！</p>
+<p>祝您生活愉快！</p>
+<h3>By&nbsp;&nbsp;gogomzj.</h3>
+{% endblock %}
